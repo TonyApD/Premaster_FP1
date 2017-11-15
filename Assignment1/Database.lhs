@@ -31,14 +31,8 @@
 
 > twins ∷ Person → Person → Bool
 > twins (_n, a, _c)
->   | a /= a = False
->   | otherwise =  True
+>   | (_n, a, _c) /= (_n, a, _c) = True
+>   | otherwise = False
 
 > increaseAge ∷ Person → Person
-> increaseAge (_n, a, _c) = p
-
-name             ∷ Person → Name
-favouriteCourse  ∷ Person → FavouriteCourse
-showPerson       ∷ Person → String
-twins            ∷ Person → Person → Bool
-increaseAge      ∷ Person → Person
+> increaseAge (_n, a, _c) = (_n, (a + 1), _c)
