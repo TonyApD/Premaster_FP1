@@ -10,9 +10,9 @@
 > type FavouriteCourse  =  String
 
 > tony, carlo, marnix ∷ Person
-> tony  =  ("Tony Lopar",  42,  "Functional Programming")
-> carlo  =  ("Carlo Jessurun",  42,  "Value Oriented Programming")
-> marnix   =  ("Marnix Dessing",   42,  "Functional Programming")
+> tony  =  ("Tony Lopar",  22,  "Functional Programming")
+> carlo  =  ("Carlo Jessurun",  21,  "Value Oriented Programming")
+> marnix   =  ("Marnix Dessing",   22,  "Functional Programming")
 
 > students   ∷  [Person]
 > students   =  [tony, carlo, marnix]
@@ -30,8 +30,8 @@
 > showPerson (_n, a, _c)  =  _n ++ " " ++ (show a) ++ " " ++ _c
 
 > twins ∷ Person → Person → Bool
-> twins (_n, a, _c)
->   | (_n, a, _c) /= (_n, a, _c) = True
+> twins (_n, a, _c) (_n2, a2, _c2)
+>   | a == a2 = True
 >   | otherwise = False
 
 > increaseAge ∷ Person → Person
