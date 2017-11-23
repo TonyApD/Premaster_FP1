@@ -25,8 +25,28 @@ The solutions for the exercises from 1 to 5 can be found in the Database.lhs fil
 
 The following expressions are made for 6:
 \begin{enumerate}[label=\alph*)]
-  \item $map (\ p -> (age \enspace p, name \enspace p)) students$
+  \item increment the age of all students by two: \\
+  $map (\backslash p -> (age \enspace p+2, name \enspace p)) students$
+  \item promote all of the students (attach "dr " to their name): \\
+  $map (\backslash p -> (age \enspace p, name \enspace p \enspace ++ \enspace "dr")) students$
+  \item find all students named Frits: \\
+  $filter(\backslash p -> name \enspace p == "Frits") students$
+  \item find all students whose favourite course is Functional Programming: \\
+  $filter(\backslash p -> favouriteCourse \enspace p == "Functional \enspace Programming") students$
+  \item find all students who are in their twenties: \\
+  $filter(\backslash p -> age \enspace p >= 20 \enspace \&\& \enspace age \enspace p < 30 ) students$
+  \item find all students whose favourite course is Functional Programming and who are in their twenties: \\ $filter(\backslash p -> favouriteCourse \enspace p == "Functional \enspace Programming" \enspace \&\& \enspace age \enspace p >= 20 \enspace \&\& \enspace age \enspace p < 30) students$
+  \item find all students whose favourite course is Imperative Programming or who are in their twenties: \\ $filter(\backslash p -> favouriteCourse \enspace p == "Imperative \enspace Programming" \enspace || \enspace age \enspace p >= 20 \enspace \&\& \enspace age \enspace p < 30) students$
 \end{enumerate}
 
+\section*{Exercise 2}
+
+\section*{Exercise 3}
+
+\section*{Exercise 4}
+
+\section*{Exercise 5}
+
+\section*{Exercise 6}
 
 \end{document}
