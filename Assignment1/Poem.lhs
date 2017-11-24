@@ -1,3 +1,7 @@
+> startString = "This old man, he played "
+> midString = ", He played knick-knack"
+> endString = "; With a knick-knack paddywhack, Give the dog a bone, " ++ "This old man came rolling home." ++ "\n"
+
 > thisOldMan :: String
 > thisOldMan = printCouplet "one" "thumb"
 >               ++ printCouplet "two" "shoe"
@@ -12,12 +16,8 @@
 
 > printCouplet :: String -> String -> String
 > printCouplet n m
->   | n == "ten"      = "This old man, he played " ++ n ++  ", "
->                   ++ "He played knick-knack " ++ m ++ "; With a knick-knack paddywhack, Give the dog a bone, "
->                   ++ "This old man came rolling home." ++ "\n"
->   | otherwise       = "This old man, he played " ++ n ++  ", "
->                   ++ "He played knick-knack on my " ++ m ++ "; With a knick-knack paddywhack, Give the dog a bone, "
->                   ++ "This old man came rolling home." ++ "\n"
+>   | n == "ten"      = startString ++ n ++ midString ++ m ++ endString
+>   | otherwise       = startString ++ n ++ midString ++ " on my " ++ m ++ endString
 
 The original poem was:
 This old man, he played one,
