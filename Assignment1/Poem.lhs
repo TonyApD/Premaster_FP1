@@ -1,21 +1,13 @@
 > startString = "This old man, he played "
 > midString = ", He played knick-knack"
-> endString = "; With a knick-knack paddywhack, Give the dog a bone, " ++ "This old man came rolling home." ++ "\n"
+> endString = "; With a knick-knack paddywhack, Give the dog a bone, This old man came rolling home."
+> dataString = [("one", "thumb"), ("two", "shoe"), ("three", "knee"), ("four", "door"), ("five", "hive"), ("six", "sticks"), ("seven", "heaven"), ("eight", "gate"), ("nine", "spine"), ("ten", " once again")]
 
-> thisOldMan :: String
-> thisOldMan = printCouplet "one" "thumb"
->               ++ printCouplet "two" "shoe"
->               ++ printCouplet "three" "knee"
->               ++ printCouplet "four" "door"
->               ++ printCouplet "five" "hive"
->               ++ printCouplet "six" "sticks"
->               ++ printCouplet "seven" "heaven"
->               ++ printCouplet "eight" "gate"
->               ++ printCouplet "nine" "spine"
->               ++ printCouplet "ten" "once again"
+> thisOldMan :: IO ()
+> thisOldMan = putStrLn . unlines . map printCouplet $ dataString
 
-> printCouplet :: String -> String -> String
-> printCouplet n m
+> printCouplet :: (String, String) -> String
+> printCouplet (n, m)
 >   | n == "ten"      = startString ++ n ++ midString ++ m ++ endString
 >   | otherwise       = startString ++ n ++ midString ++ " on my " ++ m ++ endString
 
