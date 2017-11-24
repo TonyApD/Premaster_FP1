@@ -7,3 +7,10 @@ Assignment1/Assignment1.log
 Assignment1/Assignment1.pdf
 Assignment1/Assignment1.synctex.gz
 Assignment1/Assignment1.out
+*.gz
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+Assignment2/Assignment2.pdf
