@@ -1,11 +1,27 @@
 > thisOldMan :: String
-> thisOldMan = "This old man, he played one, "
->                   ++ "He played knick-knack on my thumb; With a knick-knack paddywhack, Give the dog a bone, "
+> thisOldMan = printCouplet "one" "thumb"
+>               ++ printCouplet "two" "shoe"
+>               ++ printCouplet "three" "knee"
+>               ++ printCouplet "four" "door"
+>               ++ printCouplet "five" "hive"
+>               ++ printCouplet "six" "sticks"
+>               ++ printCouplet "seven" "heaven"
+>               ++ printCouplet "eight" "gate"
+>               ++ printCouplet "nine" "spine"
+>               ++ printCouplet "ten" "once again"
+
+> printCouplet :: String -> String -> String
+> printCouplet n m
+>   | n == "ten"      = "This old man, he played " ++ n ++  ", "
+>                   ++ "He played knick-knack " ++ m ++ "; With a knick-knack paddywhack, Give the dog a bone, "
+>                   ++ "This old man came rolling home." ++ "\n"
+>   | otherwise       = "This old man, he played " ++ n ++  ", "
+>                   ++ "He played knick-knack on my " ++ m ++ "; With a knick-knack paddywhack, Give the dog a bone, "
 >                   ++ "This old man came rolling home." ++ "\n"
 
 The original poem was:
 This old man, he played one,
-He played knick-knack on my shoe; With a knick-knack paddywhack, Give the dog a bone,
+He played knick-knack on my thumb; With a knick-knack paddywhack, Give the dog a bone,
 This old man came rolling home.
 
 This old man, he played two,

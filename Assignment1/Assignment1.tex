@@ -70,17 +70,20 @@ The following expressions are made for 6:
 
 \section*{Exercise 4}
 \begin{enumerate}
-    \item Infix notation is much easier to read. But to interpret it correctly rules about associativity and binding need to be made. While with prefix or postfix those rules aren't needed. 
-    \item Possible use-cases of the function application operator \$ is every case in which a few functions need to be applied in a certain order while denoted in a compound statement. 
+    \item Infix notation is much easier to read. But to interpret it correctly rules about associativity and binding need to be made. While with prefix or postfix those rules aren't needed.
+    \item Possible use-cases of the function application operator \$ is every case in which a few functions need to be applied in a certain order while denoted in a compound statement.
     \item This is the logical choice, because the we read it from left to right. If the operator is infixr we would end up with different results:\\
-    $(((1 \otimes 0) \otimes 1) \otimes 1) = 3$\\ 
+    $(((1 \otimes 0) \otimes 1) \otimes 1) = 3$\\
     would become:\\
     $(1 \otimes (0 \otimes (1 \otimes 1))) = 5$
-    \item $f ((x >= 0) && (a || (((g (x (y * 7))) + 10) == (b-5))))$
+    \item $f ((x >= 0) \&\& (a || (((g (x (y * 7))) + 10) == (b-5))))$
 \end{enumerate}
 
 
 \section*{Exercise 5}
+There were two repetitions in the poem. In the first line the number in the first line increments by one every couplet. In the second line, there is stated that the old man plays knick-knack on something different every time. In the last couplet there is stated that he played knick-knack once again.
+
+The solution for this exercise can be found in the attached file Poem.lhs.
 
 \section*{Exercise 6}
 The solutions for this exercise can be found in the attached file Shapes.lhs.
