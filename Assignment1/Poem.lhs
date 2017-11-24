@@ -1,3 +1,7 @@
+Marnix Dessing s1014097
+Carlo Jessurun s1013793
+Tony Lopar s1013792
+
 > thisOldMan :: String
 > thisOldMan = printCouplet "one" "thumb"
 >               ++ printCouplet "two" "shoe"
