@@ -27,7 +27,7 @@ The following expressions are made for 6:
 \begin{enumerate}[label=\alph*)]
   \item increment the age of all students by two: \\
   $map (\backslash p -> (age \enspace p+2, name \enspace p)) students$
-  \item promote all of the students (attach "dr " to their name): \\
+  \item promote all of the students (attach ``dr '' to their name): \\
   $map (\backslash p -> (age \enspace p, name \enspace p \enspace ++ \enspace "dr")) students$
   \item find all students named Frits: \\
   $filter(\backslash p -> name \enspace p == "Frits") students$
@@ -42,21 +42,43 @@ The following expressions are made for 6:
 \section*{Exercise 2}
 \begin{enumerate}
   \item We need to evaluate the expresion: $insertionSort (7 : (9 : (2 : [ ]))$.
-  \item The functions run in $2^n$ where n is the number of function calls. (Something like this was shown in the tutorial)
+  Firstly $(7: (9: (2: [ ])))$ gets evaluated resulting in the list $[7,9,2]$. Then insert gets called with 7 and the rest of the list $[9,2]$. At this point seven is indeed lesser then 9 so the list gets returned. $[7,9]$. In insertionSort however, insertinoSort was called with xs as well. This is now called with $[9,2]$. Insert is then called with 9 and a list of $[2]$. Now the second guarded statement gets executed where 9 is indeed bigger then 2. insert will get one recursive call where b get's pushed into the list resulting in $[2,9]$. Going back up the same will be done with the remaining 7 which will result in \textbf{Result:} $[2,7,9]$.
+  \item So first we will evaluate twice $(+1) 0$. This can be seen as $(+1) ((+1) 0)$ where $(+1) 0$ gets evaluated first and the result will be used as input for the second run of $(+1)$ the result is obviously 2.
+  The second statement $twice twice (*2) 1$ can be seen as $(*2) ((*2) ((*2) ((*2) 1)))$ which results in 16.
+  output of the list of statements:
+  \begin{enumerate}
+    \item ``Double pipe''
+    \item ``Quadruple pipes''
+    \item ``Sixteen pipes''
+    \item ``Loads of pipes''
+    \item ``Sixteen pipes''
+    \item ``Not going to count this `amount` pipes''
+    \item ``Same amount as above `amount` of pipes''
+  \end{enumerate}
+  The functions run in $2^n$ where n is the number of function calls.
 \end{enumerate}
 
 \section*{Exercise 3}
 \begin{enumerate}
-    \item Now the definition of twice has changed to: $twice = \backslash f \rightarrow \backslash x \rightarrow f (f x)$.\\
-        And evaluate:
-        \begin{enumerate}
-            \item $twice (+1) 0 = 2$ 
-            \item $twice \quad twice (*2) 1 = 16$ 
-        \end{enumerate}
-    \item Is it worrying that we can apply a function to itself?
+  \item
+  Now the definition of twice has changed to: $twice = \backslash f \rightarrow \backslash x \rightarrow f (f x)$.
+  Evaluating this statement obviously does the exact same as the previous definition $twice f x = f(f x)$. In this $\lambda$ version the lambda firstly gets a function and an x which as output has the function applied twice to x.
+  \newline
+  $twice (+1) 0$ then results in 2 and $twice twice (*2) 1$ results in 16. By hand the function evaluates exactly the same as in exercise 2.
+  \item This is indeed interesting. As far as we know now, the function twice gets evaluated and has a certain output. That output determines the input of the next cycle of twice. Sicne we didn't have to give this function a type declaration because the compiler can infer by itself that it's a Integer to Integer function. So in this case we guess that its a Integer function given that the argument is $(*2) 1$.
 \end{enumerate}
 
 \section*{Exercise 4}
+\begin{enumerate}
+    \item Infix notation is much easier to read. But to interpret it correctly rules about associativity and binding need to be made. While with prefix or postfix those rules aren't needed. 
+    \item Possible use-cases of the function application operator \$ is every case in which a few functions need to be applied in a certain order while denoted in a compound statement. 
+    \item This is the logical choice, because the we read it from left to right. If the operator is infixr we would end up with different results:\\
+    $(((1 \otimes 0) \otimes 1) \otimes 1) = 3$\\ 
+    would become:\\
+    $(1 \otimes (0 \otimes (1 \otimes 1))) = 5$
+    \item $f ((x >= 0) && (a || (((g (x (y * 7))) + 10) == (b-5))))$
+\end{enumerate}
+
 
 \section*{Exercise 5}
 
