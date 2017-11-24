@@ -59,7 +59,14 @@ The following expressions are made for 6:
 \end{enumerate}
 
 \section*{Exercise 3}
-Now the definition of twice has changed to: $twice = \backslash f \rightarrow \backslash x \rightarrow f (f x)$.
+\begin{enumerate}
+  \item
+  Now the definition of twice has changed to: $twice = \backslash f \rightarrow \backslash x \rightarrow f (f x)$.
+  Evaluating this statement obviously does the exact same as the previous definition $twice f x = f(f x)$. In this $\lambda$ version the lambda firstly gets a function and an x which as output has the function applied twice to x.
+  \newline
+  $twice (+1) 0$ then results in 2 and $twice twice (*2) 1$ results in 16. By hand the function evaluates exactly the same as in exercise 2.
+  \item This is indeed interesting. As far as we know now, the function twice gets evaluated and has a certain output. That output determines the input of the next cycle of twice. Sicne we didn't have to give this function a type declaration because the compiler can infer by itself that it's a Integer to Integer function. So in this case we guess that its a Integer function given that the argument is $(*2) 1$.
+\end{enumerate}
 
 \section*{Exercise 4}
 
