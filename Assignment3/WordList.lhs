@@ -19,4 +19,7 @@
 >     \et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea \
 >     \takimata sanctus est Lorem ipsum dolor sit amet."
 
-wordList ∷ String → [(Word, Int)]
+> wordList ∷ String → [(Word, Int)]
+> wordList (s) = map(\w -> Word w, 1) words s
+
+You may find the following library functions useful (in alphabetical order): filter, group, head, length, map, sort, sortOn, words.
