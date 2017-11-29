@@ -7,33 +7,31 @@ Tony Lopar s1013792
 > inverse True = False
 
 > false :: Bool -> Bool
-> false b = False
+> false _ = False
 
 > true :: Bool -> Bool
-> true b = True
+> true _ = True
 
 > same :: Bool -> Bool
 > same b = b
 
-Or-function
+Or function
 
 > for :: (Bool, Bool) -> Bool
-> for (_, True) = True
-> for (True,_) = True
-> for (_, _) = False
+> for (True, _) = True
+> for (False, x) = x
 
 And function
 
 > fand :: (Bool, Bool) -> Bool
-> fand (True, True) = True
-> fand (_,_) = False
+> fand (x, y) = x && y
 
 XOR-function
 
 > fxor :: (Bool, Bool) -> Bool
-> fxor (False, True)  = True
-> fxor (True, False)  = True
-> fxor (_, _)         =  False
+> fxor (x, y)
+>     | x == y    = False
+>     | otherwise = True
 
 Equals function which returns whether the inputs are equal using the defined xor and inverse function
 
