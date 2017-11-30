@@ -29,8 +29,41 @@
 
 \section*{Exercise 2}
 
-
+\newpage
 \section*{Exercise 3}
+Repeat the exercise using the type annotation ::Integer. What do you observe? Can you explain the differences?\\
+\newline
+The interesting output:
+\begin{lstlisting}
+Prelude: product [1..66] :: Int
+0
+Prelude: product [1..66] :: Integer
+544344939077443064003729240247842752644293064388798874532860126869671081148416000000000000000
+\end{lstlisting}
+The Int type is defined as ``A fixed-precision integer type with at least the range $[-2^{29} \dots. 2^{29-1}]$.'' $[0]$ The range varies by machine but you can find it with minBound and maxBound
+\newline
+The reason it overflows is that it's got a fixed amount of memory allocated for it. Imagine a simpler example - a positive integer in memory whose maximum value was 7 (stored as 3 bits in memory)
+\newline
+\newline
+0 is represented as 000, in binary\\
+1 is represented as 001\\
+2 is represented as 010, etc.\\
+\newline
+Note how the bit math works: when you add 1, you either turn the smallest digit from 0 to 1, or you turn it from 1 to 0 and do the same operation on the next-most-significant digit.
+\newline
+\newline
+Now if you naievely (as Haskell does) perform this when there's no next-most-significant digit, then it just increments as usual, but ``gets its head cut off.'' E.g. 111 + 1 becomes 000 instead of 1000. This is what's happening with Haskell, except that its lowest value (represented as a series of 0s) is its lowest negative number. it uses its ``leftmost'' bit to represent +/-. You'll need to do (maxBound :: Int) + (maxBound :: Int) + 2 to get 0.
+\begin{lstlisting}
+>  maxBound :: Int
+9223372036854775807
+>  (maxBound :: Int) + 1
+-9223372036854775808
+>  (maxBound :: Int) + 2
+-9223372036854775807
+>  let x = (maxBound :: Int) + 1 in x + x
+0
+\end{lstlisting}
+Why ``allow'' this to happen? Simple - efficiency. It's much faster to not check for if there'll be an integer overflow. This is the reason that Integer exists - it's unbounded, for when you think you might overflow, but you pay a price in efficiency.
 
 
 \section*{Exercise 4}
