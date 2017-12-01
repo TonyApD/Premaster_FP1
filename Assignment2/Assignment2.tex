@@ -24,13 +24,22 @@
 \begin{enumerate}
   \item There are four functions possible, since the a Bool has two possible values. For both possible inputs there is a function that gives a for both one value. The functions that may exist are a function that only gives true, a function that only gives true, the identity function and the inverse. The defined functions may be found in the attached file Exercise1.lhs.
   \item There are 8 functions possible. Since there are 4 possible combinations possible as input. These four combinations all have two possible outputs. The defined functions may be found in the attached file Exercise1.lhs.
-  \item The type $Bool \rightarrow Bool \rightarrow Bool$ may be a function that takes two parameters as input and returns a boolean or it may be a function that takes one Bool as input and returns a function from Bool to Bool. In the case of two values as input we have eight options as seen in the previous question. In the case that we return a funciton from Bool to Bool we also have 8 possibilities since there are two possible inputs and four function possible from Bool to Bool.
-  \newline
-  \newline
-  Implementations of these functions can be seen in \textbf{Exercise1.lhs}.
+  \item The type $Bool \rightarrow Bool \rightarrow Bool$ may be a function that takes two parameters as input and returns a boolean or it may be a function that takes one Bool as input and returns a function from Bool to Bool. In the case of two values as input we have eight options as seen in the previous question. In the case that we return a funciton from Bool to Bool we also have 8 possibilities since there are two possible inputs and four function possible from Bool to Bool. This means that $Bool \rightarrow Bool \rightarrow Bool$ may have 16 different functions in total.
 \end{enumerate}
 
 \section*{Exercise 2}
+The functions from this exercise are defined in the attached file Char.lhs. In this exercise we also had to decode the following message:
+
+``MHILY LZA ZBHL XBPZXBL MVYABUHL HWWPBZ JSHBKPBZ JHLJBZ KPJABT HYJUBT LZA ULBAYVU''
+
+With our implemented shift function we were able to recover the following message:
+
+``FABER EST SUAE QUISQUE FORTUNAE APPIUS CLAUDIUS CAECUS DICTUM ARCNUM EST NEUTRON''
+
+This message is found by shifting all the characters 19 characters. This is done by the following command:
+$map (\backslash x \enspace -> \enspace shift \enspace 19 \enspace x)msg$.
+
+The function will give the same result when the 19 is replaced by an integer x for which holds that $19 \equiv x `\textbf{mod}` 26$.
 
 \newpage
 \section*{Exercise 3}
@@ -102,7 +111,36 @@ realToFrac = fromRational . toRational
 
 
 \section*{Exercise 5}
-
+\begin{enumerate}
+    \item Which of the following expressions are well-typed and well-formed?
+    \begin{enumerate}
+        \item $(+4)$, is typed: Num a $=> a \rightarrow a$ so it is well-typed, but not well-formed because the statement +4 is not applied to something but rather decibels a function. $(+4) 4$ would be well-formed because this results in 8. If we feed $(+4)$ to the compiler it says: No instance for (Show (Integer $\rightarrow$ Integer))
+        \item $div$, is typed: $Integer \rightarrow Integer \rightarrow$. And so the same as above hold, it is well-typed, but it is not a valid expression i.e. not well-formed because there are missing two parameters.
+        \item $div 7$, is the same as $div$ above, but now there is only missing one argument. Still well-typed, and not well-formed.
+        \item $(div 7) 4$ div now has the two arguments and is a well-typed and well-formed expression.
+        \item $div (7 \quad 4)$ div now has the two arguments and is a well-typed and well-formed expression.
+        \item $7 `div` 4$ is infix notation for the above $(div 7) 4$.
+        \item $+ 3 \quad 7$ is NOT well-formed, the $+$ operator should be used infix.
+        \item $(+) 3 \quad 7$ is well-formed and well-typed, the $+$ operator is now in prefix notation, and forms a function with signature $(+)::$Num $a => a \rightarrow a \rightarrow a$
+        \item b has the type Bool, $(b, `b`, "b")$ is not well-typed or formed.
+        \item $(abs, `abs`, "abs")$ is not well-typed or formed.
+        \item $abs \circ negate$, is typed: Num $=> c \rightarrow c$ and is well-typed but not well-formed the function needs an parameter.
+        \item $(*3) \circ (+3)$ what holds for $abs \circ negate$ holds for this expression too. The functions abs and negate are replaced by *3 and +3 respectively.
+    \end{enumerate}
+    \item The other two functions:
+    \begin{enumerate}
+        \item $(abs \circ) \circ (\circ negate)$
+        \item $(div \circ) \circ (\circ mod)$
+    \end{enumerate}
+    \item Infer the types of the following functions:
+    \begin{enumerate}
+        \item $i \quad x = x$, has the function signature $i::x \rightarrow x$, any type is accepted and the same type is returned. Also called the identity function.
+        \item $k (x, y) = x$ has the signature $k::(x , y) \rightarrow x$ any tuple with any two types is accepted and the first tuple element is returned. So that is the type x.
+        \item $b (x, y, z) = (x \quad z) y$ has the signature: $b :: (z \rightarrow y \rightarrow x, y, z) \rightarrow x$, this means x is a function from y and z to the return type of x.
+        \item $c (x, y, z) = x (y z)$ has the signature: $c::(x \rightarrow y, z \rightarrow x, z) \rightarrow y$, this means y is applied to z, then x is applied to the result of y, the return type of x is the return type of the whole function.
+        \item $s (x, y, z) = (x z) (y z)$ has the signature: $s::(t1 \rightarrow t2 \rightarrow t3, t1 \rightarrow t2, t1) \rightarrow t3$
+    \end{enumerate}
+\end{enumerate}
 
 \section*{Exercise 6}
 

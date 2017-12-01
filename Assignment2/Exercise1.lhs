@@ -3,8 +3,7 @@ Carlo Jessurun s1013793
 Tony Lopar s1013792
 
 > inverse :: Bool -> Bool
-> inverse False = True
-> inverse True = False
+> inverse x = not x
 
 > false :: Bool -> Bool
 > false _ = False
