@@ -23,8 +23,8 @@
 > shift      ∷ Int -> Char -> Char
 > shift i c
 >  | c == ' ' = ' '
->  | ord c + i <= 90 = chr(ord c + i)
->  | otherwise = chr(ord c + i - 26)
+>  | ord c + i `mod` 26 <= 90 = chr(ord c + i `mod` 26)
+>  | otherwise = chr(ord c + i `mod` 26 - 26)
 
 > msg  ∷  String
 > msg  =  "MHILY LZA ZBHL XBPZXBL MVYABUHL HWWPBZ JSHBKPBZ \
