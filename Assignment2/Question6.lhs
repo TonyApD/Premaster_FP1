@@ -49,8 +49,8 @@ Tony Lopar s1013792
 
 2e. Function: (x→a→b,a,x)→b - NOT COMPILING
 
- xabaxb :: (x -> a -> b, a, x) -> b
- xabaxb (f, g, z) = (f z)(g z)
+> xabaxb :: (x -> a -> b, a, x) -> b
+> xabaxb (f, g, z) =
 
 2f. Function: (a→b,x→a,x)→b
 
