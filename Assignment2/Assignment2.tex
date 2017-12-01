@@ -37,7 +37,9 @@ With our implemented shift function we were able to recover the following messag
 "FABER EST SUAE QUISQUE FORTUNAE APPIUS CLAUDIUS CAECUS DICTUM ARCNUM EST NEUTRON"
 
 This message is found by shifting all the characters 19 characters. This is done by the following command:
-$map (\backslash x \enspace -> \enspace shift \enspace 19 \enspace x)msg$
+$map (\backslash x \enspace -> \enspace shift \enspace 19 \enspace x)msg$.
+
+The function will give the same result when the 19 is replaced by an integer x for which holds that $19 \equiv x `\textbf{mod}` 26$.
 
 \newpage
 \section*{Exercise 3}
