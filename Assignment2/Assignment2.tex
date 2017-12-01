@@ -28,6 +28,16 @@
 \end{enumerate}
 
 \section*{Exercise 2}
+The functions from this exercise are defined in the attached file Char.lhs. In this exercise we also had to decode the following message:
+
+"MHILY LZA ZBHL XBPZXBL MVYABUHL HWWPBZ JSHBKPBZ JHLJBZ KPJABT HYJUBT LZA ULBAYVU"
+
+With our implemented shift function we were able to recover the following message:
+
+"FABER EST SUAE QUISQUE FORTUNAE APPIUS CLAUDIUS CAECUS DICTUM ARCNUM EST NEUTRON"
+
+This message is found by shifting all the characters 19 characters. This is done by the following command:
+$map (\backslash x \enspace -> \enspace shift \enspace 19 \enspace x)msg$
 
 \newpage
 \section*{Exercise 3}
