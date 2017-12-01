@@ -67,6 +67,35 @@ Why ``allow'' this to happen? Simple - efficiency. It's much faster to not check
 
 
 \section*{Exercise 4}
+Implemented in Exercise4.lhs.
+The first two assignments where swap :: (Int, Int) (Int, Int) and swap :: (a, b)  (b, a) are implemented all work perfectly.
+\newline
+\newline
+The difference is that the first pair ``(Int, (Char, Bool))'' consists of an int followed by a tuple of char and bool and the second pair ``(Int, Char, Bool)'' consists of the types int, char bool separately.
+As for  the last question about datatypes, we can use a plethora of functions to achieve this. For example: \\
+\textbf{fromIntegral} - to convert between say Int and Double\\
+\textbf{pack / unpack} - to convert between ByteString and String\\
+\textbf{read} - to convert from String to Int
+\newline
+An example implementation from Hoogle:
+\begin{lstlisting}
+fromIntegral = fromInteger . toInteger
+
+{-# RULES
+"fromIntegral/Int->Int" fromIntegral = id :: Int -> Int
+  #-}
+
+{-# RULES
+"fromIntegral/Int->Word"  fromIntegral = \(I# x#) -> W# (int2Word# x#)
+"fromIntegral/Word->Int"  fromIntegral = \(W# x#) -> I# (word2Int# x#)
+"fromIntegral/Word->Word" fromIntegral = id :: Word -> Word
+  #-}
+
+-- | general coercion to fractional types
+realToFrac :: (Real a, Fractional b) => a -> b
+{-# NOINLINE [1] realToFrac #-}
+realToFrac = fromRational . toRational
+\end{lstlisting}
 
 
 \section*{Exercise 5}
