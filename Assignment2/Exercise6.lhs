@@ -49,7 +49,7 @@ Tony Lopar s1013792
 
 2e. Function: (x→a→b,a,x)→b - NOT COMPILING
 
-> xabaxb :: (x -> a -> b, a, x) -> b
+> xabaxb :: (x -> a -> b, a, x) s-> b
 > xabaxb (f, g, z) =
 
 2f. Function: (a→b,x→a,x)→b
@@ -83,7 +83,7 @@ Tony Lopar s1013792
 > faaa2 f = f f
 
 
-% > h :: (a, b) -> a
+ > h :: (a, b) -> a
 % > h (a, b) -> a
 
 % > i :: (a, a) -> (a, a)
