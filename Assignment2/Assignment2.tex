@@ -30,11 +30,15 @@
 \section*{Exercise 2}
 The functions from this exercise are defined in the attached file Char.lhs. In this exercise we also had to decode the following message:
 \newline
+\newline
 ``MHILY LZA ZBHL XBPZXBL MVYABUHL HWWPBZ JSHBKPBZ JHLJBZ KPJABT HYJUBT LZA ULBAYVU''
+\newline
 \newline
 With our implemented shift function we were able to recover the following message:
 \newline
+\newline
 ``FABER EST SUAE QUISQUE FORTUNAE APPIUS CLAUDIUS CAECUS DICTUM ARCNUM EST NEUTRON''
+\newline
 \newline
 This message is found by shifting all the characters 19 characters. This is done by the following command:
 $map (\backslash x \enspace -> \enspace shift \enspace 19 \enspace x)msg$.
@@ -112,7 +116,7 @@ realToFrac :: (Real a, Fractional b) => a -> b
 realToFrac = fromRational . toRational
 \end{lstlisting}
 
-
+\newpage
 \section*{Exercise 5}
 \begin{enumerate}
     \item Which of the following expressions are well-typed and well-formed?
