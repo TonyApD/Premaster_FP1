@@ -4,6 +4,9 @@
 > import Prelude hiding (Word)
 > import Unicode
 > import Data.List
+> import Data.Char (isAlphaNum, isSpace, toLower)
+> import Data.Map (Map, fromListWith)
+
 
 > type Word  =  String
 
@@ -17,9 +20,16 @@
 >     \sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et \
 >     \dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \
 >     \et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea \
->     \takimata sanctus est Lorem ipsum dolor sit amet."
+>     \takimata sanctus est Lorem ipsum dolor sit amet is."
 
-> wordList ∷ String → [(Word, Int)]
-> wordList (s) = map(\w -> Word w, 1) words s
+> wordList :: String -> Map Word Int
+> wordList s = fromListWith (+) $ zip (tokenize s) (repeat 1)
 
-You may find the following library functions useful (in alphabetical order): filter, group, head, length, map, sort, sortOn, words.
+> tokenize :: Word -> [Word]
+> tokenize s = words $ map toLower $ replace s
+
+> replace :: Word -> Word
+> replace s = [if isAllowed c then c else ' ' | c <- s]
+
+> isAllowed :: Char -> Bool
+> isAllowed c = isAlphaNum c || isSpace c
