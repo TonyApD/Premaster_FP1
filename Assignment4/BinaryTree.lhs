@@ -17,11 +17,28 @@
 > ex3  ∷  Tree Char
 > ex3  =  Node (Node Empty 'a' Empty) 'k' (Node Empty 'z' Empty)
 
-size ∷ Tree elem → Int
-minHeight, maxHeight ∷ Tree elem → Int
-member ∷ (Eq elem) ⇒ elem → Tree elem → Bool
+> size ∷ Tree elem → Int
+> size Empty        = 0
+> size (Node l a r) = size l + 1 + size r
+
+% > minHeight, maxHeight ∷ Tree elem → Int
+% > minHeight, maxHeight Empty        = 0
+% > maxHeight (Node l a r)            = 1 + (height l `max` height r)
+% > minHeight (Node l a r)            = 1 + (height l `min` height r)
+
+> member ∷ (Eq elem) ⇒ elem → Tree elem → Bool
+> member x Empty          = False
+> member x (Node l a r)   = x == a || member x l || member x r
+
 preorder, inorder, postorder ∷ Tree elem → [elem]
 layout ∷ (Show elem) => Tree elem → String
 build ∷ [elem] → Tree elem
 balanced ∷ [elem] → Tree elem
 create ∷ Int → Tree ()
+
+Node (Node Empty `a` Empty) `b` Empty :: Tree Char
+
+> tree :: (Integer, Integer) -> Tree Integer
+> tree (l, r)
+>       | l > r     = Empty
+>       | otherwise = Node (tree (l, r - 1)) r Empty
