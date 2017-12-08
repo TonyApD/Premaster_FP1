@@ -51,6 +51,11 @@ Tony Lopar s1013792
 > trustedSort ∷ (Ord a) ⇒ [a] → [a]
 > trustedSort  =  sort
 
+> orderedrun      ∷ (Ord a) ⇒ Property [a]
+> orderedrun []   = True
+> orderedrun  [_]  = True
+> orderedrun (x:y:xs) = x > y && ordered (y:xs)
+
 > runs :: (Ord a) => [a] -> [[a]]
 > runs []       = []
 > runs (x:xs)   = extend x (runs xs)

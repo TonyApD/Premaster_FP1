@@ -38,7 +38,7 @@ The partitioned list already contains partially sorted lists. So, when we want t
 \begin{enumerate}
   \item The implementation can be found in the attached file \emph{Quicktest.lhs}. In order to check whether the next element in non-decreasing we should check that the next value is higher of equal to the previous.
   \item The function is defined as permutations. The number of factorations is equal to the factorial of n, so permutations n will result a list of length n!.
-  \item A possible testing procedure could be to check for each element of the list whether it's in a non-decreasing order.
+  \item A possible testing procedure could be to check for each generated run whether this is sorted in a non-decreasing order.
   \item We can use the fact that $\sqrt{n} \cdot \sqrt{n} = n$ to check whether the right square root has been computed.
   \item If the first list contains n and the second list m elements there will be n x m combinations possible, since every value from n can be combined with all m. So if we have bools = [True, False] and chars = "Tony" we will have 8 pairs in a list as result when we execute $bools \otimes chars$ since bools contains 2 and chars contains 4 elements. The output will be:  [(True,'T'),(True,'o'),(True,'n'),(True,'y'),(False,'T'),(False,'o'),(False,'n'),(False,'y')]
 \end{enumerate}
