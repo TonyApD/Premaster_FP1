@@ -37,3 +37,28 @@ Tony Lopar s1013792
 
 > isAllowed :: Char -> Bool
 > isAllowed c = isAlphaNum c || isSpace c
+
+Next assignment 3.6
+
+> loremConcat =
+>   concat
+>     [ "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam \
+>     \nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam \
+>     \erat, sed diam voluptua. At vero eos et accusam et justo duo dolores \
+>     \et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \
+>     \Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur \
+>     \sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et \
+>     \dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \
+>     \et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea \
+>     \takimata sanctus est Lorem ipsum dolor sit amet is."
+>     ]
+
+> format maxlen = wrap_ 0 . words
+>   where
+>     wrap_ _ [] = "\n"
+>     wrap_ pos (w:ws)
+>       | pos == 0 = w ++ wrap_ (pos + lw) ws
+>       | pos + lw + 1 > maxlen = '\n' : wrap_ 0 (w : ws)
+>       | otherwise = ' ' : w ++ wrap_ (pos + lw + 1) ws
+>       where
+>         lw = length w
