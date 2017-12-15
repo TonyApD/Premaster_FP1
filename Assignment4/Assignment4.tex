@@ -146,7 +146,13 @@ Exercise 4.2 can be found in TreeVizualization.lhs
 \end{enumerate}
 
 \section*{Exercise 6}
+So we've given a go at this exercise but failed to even implement the first one. The discription states that ``Prim Sin :+: Const 2 :*: Id '' represents ``$\lambda$ x $\rightarrow$ sin x+2''. Now when we try to run this we get the following error:
 
+\begin{lstlisting}
+Data constructor not in scope: (:*:) :: Function -> Function -> t
+Perhaps you meant `:+:' (line 17)
+\end{lstlisting}
+Since this simple example doesn't even work, we gave up. We'd love to hear how we could have implemented this!
 
 
 \end{document}
