@@ -2,8 +2,8 @@
 > module BinarySearchTree
 > where
 > import Unicode
-> import BinaryTree  -- hiding (member)
 > import QuickTest
+> import TreeVisualization
 
 > registry  ∷  Tree String
 > registry  =  Node (Node (Node Empty "Frits" Empty) "Peter" Empty) "Ralf" Empty
@@ -46,7 +46,8 @@
 > isSearchTree (Node (Node l la lr) a Empty)  = a >= la && isSearchTree l
 > isSearchTree (Node (Node l la lr) a (Node rl ra r))  = a >= la && a <= ra && isSearchTree l && isSearchTree r
 
-trees ∷ [elem] → Probes (Tree elem)  -- should be defined in BinaryTree
+ trees ∷ [elem] → Probes (Tree elem)  -- should be defined in BinaryTree
+ trees (t:xs) = and [inorder t == xs | t <- trees xs]
 
 
  search :: (Eq elem) => elem -> SearchTree elem -> bool

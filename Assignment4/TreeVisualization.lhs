@@ -1,5 +1,5 @@
 > {-# LANGUAGE UnicodeSyntax #-}
-> module BinarySearchTree
+> module TreeVisualization
 > where
 > import Unicode
 > import Data.List
