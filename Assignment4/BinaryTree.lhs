@@ -42,3 +42,12 @@ Node (Node Empty `a` Empty) `b` Empty :: Tree Char
 > tree (l, r)
 >       | l > r     = Empty
 >       | otherwise = Node (tree (l, r - 1)) r Empty
+
+Exercise 4.1
+
+> ex4  ∷  Tree Char
+> ex4  =  Node (Node Empty 't' Empty) 'a' (Node Empty 'u' Empty)
+
+Exercise 4.2
+I'm, asuming this needs to be done as a visual representation?¿?
+Therefore done in the tex file.
