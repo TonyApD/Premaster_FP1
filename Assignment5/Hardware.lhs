@@ -27,12 +27,8 @@
 
 > mapr ∷ ((a, state) → (b, state)) → (([a], state) → ([b], state))
 > mapr (▹) e = circuit e
->     where circuit e []     = e
->           cicuit e (x:xs) = circuit x ▹ circuit xs
-
- scanr (⊕) 0 where (a, sa)⊕(b, sb) = ((a:[], sa)->(b:[], sb))
-
-foldl (⊗) 0 where a ⊗ b = a * base + b
+>     where e []     = e
+>           circuit (x:xs) = x ▹ circuit xs
 
 > type Carry  =  Bit
 
