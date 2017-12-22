@@ -30,7 +30,10 @@
 > compile (Fun x e)     = abstr x (compile e)
 > compile (e1 :@ e2)    = compile e1 `App` compile e2
 
-reduce  ∷ SKI var → [SKI var] → SKI var
+> reduce  ∷ SKI var → [SKI var] → SKI var
+> reduce (Free y)[]       = App K (Free y)
+> reduce (Free y) (x:xs)  = App x (reduce x xs)
+
 
 twice = parse expr "λf.λx.f(fx)"
 twice
