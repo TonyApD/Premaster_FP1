@@ -25,10 +25,10 @@
 > I ⊕ O  =  I
 > I ⊕ I  =  O
 
-< mapr ∷ ((a, state) → (b, state)) → (([a], state) → ([b], state))
-< mapr ((a, sa)->(b, sb)) = scanr (⊕) 0 where (a, sa)⊕(b, sb) = ((a:[], sa)->(b:[], sb))
-
-foldl (⊗) 0 where a ⊗ b = a * base + b
+> mapr ∷ ((a, state) → (b, state)) → (([a], state) → ([b], state))
+> mapr (▹) e = circuit e
+>     where e []     = e
+>           circuit (x:xs) = x ▹ circuit xs
 
 > type Carry  =  Bit
 
