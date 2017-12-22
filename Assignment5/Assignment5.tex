@@ -21,13 +21,18 @@
 
 \section*{Exercise 1}
 The exercise code can be found in Question1.lhs\\
-If both (folding and Exercise 3.2) recursion schemes are applicable, 
+If both (folding and Exercise 3.2) recursion schemes are applicable,
 which one is preferable in terms of running time?\\
 I don't think that there is any difference, both functions perform the same operations,
-It could be the compiler does somthing smart with them. But folding against the 
+It could be the compiler does somthing smart with them. But folding against the
 recursion scheme form exercise 3.2 does not make a difference.
 
 \section*{Exercise 2}
+\begin{enumerate}
+  \item The implementation can be found in Numeral.lhs.
+  \item It is possible to define msdf in lsdf and vice versa. In order to define one of the functions into the other, we should reverse the list of the input. This gives the same output in the other function. The reason for this is that msdf uses foldl which is recursive from the tail to the head of the list while lsdf uses foldr which is recursive from the head to the tail. In this application specific we see that the results of lsdf and msdf are equal when we reverse the list in one of them. For example, \underline{msdf 10 [3, 2, 1, 0]} and \underline{lsdf 10 (reverseList [3, 2, 1, 0])} both will result in 3210.
+   Now we see that both functions iterate through the list in the opposite direction of eachother. This means that in general we should also be able to express foldl in foldr by reversing the list of the input.
+\end{enumerate}
 \section*{Exercise 3}
 \section*{Exercise 4}
 \section*{Exercise 5}
