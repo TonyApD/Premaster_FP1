@@ -22,11 +22,27 @@
 \section*{Exercise 1}
 Code can be found in BinaryTree.lhs\\
 The instance declarations aren't very useful. Ordering a binary tree is not a very useful action... Most of the time we are interested in what is in the binary tree and not if it is bigger or smaller in comparison with another tree. Besides that the definition of bigger or smaller is not really clear, is it the number of nodes? The total sum of values?\\
-The Eq instance declaration could be more useful, a use case could be: A tree is the result from some sort of user input, and checking if the tree is the same as the original tree given to the user, could tell if the input is changed from the original data, and some action is now required... 
+The Eq instance declaration could be more useful, a use case could be: A tree is the result from some sort of user input, and checking if the tree is the same as the original tree given to the user, could tell if the input is changed from the original data, and some action is now required...
 
 \section*{Exercise 2}
+\begin{enumerate}
+  \item There are 4 ways to turn Bool into a monoid. These are all implemented in the file MapReduce.lhs.
+  \item (Meaning of reduce for all of the functions)
+  \begin{enumerate}[label=\roman*)]
+    \item And: In the function and the reduce gives whether all values in the list were true.
+    \item Or: Returns whether one of the values in the list is true.
+    \item XOR:
+  \end{enumerate}
+  \item and, or, xor, Equal, unequal,
+\end{enumerate}
+
 \section*{Exercise 3}
 \section*{Exercise 4}
+\begin{enumerate}
+  \item The difference in the types is the order in which they process elements. The function foldr start at the first element of the list and iteres through the rest of the tail. The function foldl starts at the last element and iterates towards the head. Finally, the function foldm splits the list in two parts and does a recursion on both parts. Finally, foldm merges the result of the two sublists.
+  \item The implementation can be found in MapReduce.lhs.
+  \item (hard to implement i guess)
+\end{enumerate}
 \section*{Exercise 5}
 \section*{Exercise 6}
 
