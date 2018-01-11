@@ -27,19 +27,19 @@ The Eq instance declaration could be more useful, a use case could be: A tree is
 \section*{Exercise 2}
 \begin{enumerate}
   \item There are 4 ways to turn Bool into a monoid. These are all implemented in the file MapReduce.lhs.
-  \item (Meaning of reduce for all of the functions)
+  \item The Meaning of reduce means the following for each of the functions:
   \begin{enumerate}[label=\roman*)]
-    \item And: In the function and the reduce gives whether all values in the list were true.
-    \item Or: Returns whether one of the values in the list is true.
-    \item XOR:
+  \item AND: Whether all values in the list are True
+  \item OR: Whether one of the values in the list is True
+  \item unequal: The XOR of the whole list where True = 1 and False = 0
+  \item Equal: Whether all of the values in the list are equal.
   \end{enumerate}
-  \item and, or, xor, Equal, unequal,
 \end{enumerate}
 
 \section*{Exercise 3}
 \section*{Exercise 4}
 \begin{enumerate}
-  \item The difference in the types is the order in which they process elements. The function foldr start at the first element of the list and iteres through the rest of the tail. The function foldl starts at the last element and iterates towards the head. Finally, the function foldm splits the list in two parts and does a recursion on both parts. Finally, foldm merges the result of the two sublists.
+  \item The difference in the types is caused by the order in which they process elements. The function foldr start at the first element of the list and iteres through the rest of the tail. The function foldl starts at the last element and iterates towards the head. Finally, the function foldm splits the list in two parts and does a recursion on both parts. Finally, foldm merges the result of the two sublists.
   \item The implementation can be found in MapReduce.lhs.
   \item (hard to implement i guess)
 \end{enumerate}
