@@ -29,10 +29,10 @@ The Eq instance declaration could be more useful, a use case could be: A tree is
   \item There are 4 ways to turn Bool into a monoid. These are all implemented in the file MapReduce.lhs. These are the functions And, or, unequal and equal.
   \item The Meaning of reduce means the following for each of the functions:
   \begin{enumerate}[label=\roman*)]
-  \item AND: Whether all values in the list are True
-  \item OR: Whether one of the values in the list is True
-  \item Unequal: Whether there are not two equal values next to eachother.
-  \item Equal: Whether all of the values in the list are equal.
+  \item AND: The reduce gives whether all values in the list are True
+  \item OR: Whether one of the values in the list is True. The reduce will give false for the empty list.
+  \item Equal: The function gives whether all values in the list are equal. However, if the list contains an uneven number of False the reduce will give False since the identity is True. In the case of an unequal number of elements an element is compared to the $\epsilon$.
+  \item Unequal: The reduce gives whether there are no two equal values after eachother. A false is given when two equal values appear after eachother. The reduce still fails in some case with an odd number of true, for example: [True, False, True, False, True, True] gives the wrong result since the identity is False.
   \end{enumerate}
 \end{enumerate}
 

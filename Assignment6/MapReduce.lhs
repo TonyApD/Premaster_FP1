@@ -28,10 +28,9 @@ Exercise 6.2.1:
 > newtype Unequal = MakeUnequal {fromBool2::Bool} deriving (Show)
 > newtype AND     = MakeAnd     {fromBool3::Bool} deriving (Show)
 > newtype Equal   = MakeEqual   {fromBool4::Bool} deriving (Show)
-> newtype FALSE   = MakeFalseAnd {fromBool5::Bool} deriving (Show)
 
 > instance Monoid OR where
->   ε       = MakeOr True
+>   ε       = MakeOr False
 >   x • y   = MakeOr (fromBool x || fromBool y)
 
 > instance Monoid AND where
@@ -39,16 +38,12 @@ Exercise 6.2.1:
 >   x • y   = MakeAnd (fromBool3 x && fromBool3 y)
 
 > instance Monoid Unequal where
->   ε       = MakeUnequal True
+>   ε       = MakeUnequal False
 >   x • y   = MakeUnequal (fromBool2 x /= fromBool2 y)
 
 > instance Monoid Equal where
 >   ε       = MakeEqual True
 >   x • y   = MakeEqual (fromBool4 x == fromBool4 y)
-
-> instance Monoid FALSE where
->   ε       = MakeFalseAnd True
->   x • y   = MakeFalseAnd (not (fromBool5 x) && not (fromBool5 y))
 
 Exercise 6.3:
 
