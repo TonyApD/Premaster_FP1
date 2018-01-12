@@ -29,6 +29,12 @@
 > genericSort kvs  =  map snd (sortBy (\ kv1 kv2 → compare (fst kv1) (fst kv2)) kvs)
  
 
+> instance (Rank key1, Rank key2) => Rank (key1, key2) where
+>   rank kvs = map (map snd) 
+>				(groupBy (\g1 g2 -> (fst g1) == (fst g2)) 
+>				(sortBy (\kv1 kv2 -> compare2 (fst kv1) (fst kv2) ) kvs))
+
+
 > instance (Rank a1, Rank a2) ⇒ Rank (Either a1 a2) where
 > 	compare2 (Left a1) (Left a2)   = compare2 a1 a2
 > 	compare2 (Left a1) (Right b2)  = LT
