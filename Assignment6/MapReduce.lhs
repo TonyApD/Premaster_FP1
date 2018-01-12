@@ -14,10 +14,49 @@
 
 > newtype OrdList elem = Ord [elem]
 
+> kpg ∷ (Bit, Bit) → (Carry → Carry)
+> kpg (O,  O  )  =  \ _c  → O  -- kill
+> kpg (O,  I  )  =  \ c   → c  -- propagate
+> kpg (I,  O  )  =  \ c   → c  -- propagate
+> kpg (I,  I  )  =  \ _c  → I  -- generate
+
+> data KPG  =  K | P | G
+
+Exercise 6.2.1:
+
+> newtype OR      = MakeOr      {fromBool::Bool} deriving (Show)
+> newtype Unequal = MakeUnequal {fromBool2::Bool} deriving (Show)
+> newtype AND     = MakeAnd     {fromBool3::Bool} deriving (Show)
+> newtype Equal   = MakeEqual   {fromBool4::Bool} deriving (Show)
+> newtype FALSE   = MakeFalseAnd {fromBool5::Bool} deriving (Show)
+
+> instance Monoid OR where
+>   ε       = MakeOr True
+>   x • y   = MakeOr (fromBool x || fromBool y)
+
+> instance Monoid AND where
+>   ε       = MakeAnd True
+>   x • y   = MakeAnd (fromBool3 x && fromBool3 y)
+
+> instance Monoid Unequal where
+>   ε       = MakeUnequal True
+>   x • y   = MakeUnequal (fromBool2 x /= fromBool2 y)
+
+> instance Monoid Equal where
+>   ε       = MakeEqual True
+>   x • y   = MakeEqual (fromBool4 x == fromBool4 y)
+
+> instance Monoid FALSE where
+>   ε       = MakeFalseAnd True
+>   x • y   = MakeFalseAnd (not (fromBool5 x) && not (fromBool5 y))
+
+Exercise 6.3:
+
 > instance (Ord elem) ⇒ Monoid (OrdList elem) where
 >   ε                   = Ord []
 >   (Ord x) • (Ord y)   = Ord (runs x y)
 
+Exercise 6.4:
 Top-down implementation of foldm
 
 > foldm ∷ (a → a → a) → a → ([a] → a)
@@ -38,46 +77,6 @@ Bottom-up implementation of foldm(called foldmb since foldm is already defined a
 > pairs [] = []
 > pairs (x:[]) = []
 > pairs (x:y:zs) = x : pairs (y : zs)
-
-> kpg ∷ (Bit, Bit) → (Carry → Carry)
-> kpg (O,  O  )  =  \ _c  → O  -- kill
-> kpg (O,  I  )  =  \ c   → c  -- propagate
-> kpg (I,  O  )  =  \ c   → c  -- propagate
-> kpg (I,  I  )  =  \ _c  → I  -- generate
-
-> data KPG  =  K | P | G
-
-Exercise 6.2.1:
-
-> data And = A Bool
->   deriving (Show)
-> instance Monoid And where
->   ε       = A True
->   A x • A y   = A (x && y)
-
-> newtype OR = MakeOr {fromBool::Bool} deriving (Show)
-> newtype Unequal = MakeUnequal {fromBool2::Bool} deriving (Show)
-
-> instance Monoid OR where
->   ε       = MakeOr True
->   x • y   = MakeOr (fromBool x || fromBool y)
-
-> instance Monoid Unequal where
->   ε       = MakeUnequal True
->   x • y   = MakeUnequal (fromBool2 x /= fromBool2 y)
-
-> data Equal = D Bool
->   deriving (Show)
-> instance Monoid Equal where
->   ε       = D True
->   D x • D y   = D (x == y)
-
-> data FALSE = E Bool
->   deriving (Show)
-> instance Monoid FALSE where
->   ε       = E True
->   E x • E y   = E (not x && not y)
-
 
 > runs :: (Ord a) => [a] -> [a] -> [a]
 > runs [][] = []
