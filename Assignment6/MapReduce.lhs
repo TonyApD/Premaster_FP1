@@ -14,14 +14,30 @@
 
 > newtype OrdList elem = Ord [elem]
 
-instance (Ord elem) ⇒ Monoid (OrdList elem) where
+> instance (Ord elem) ⇒ Monoid (OrdList elem) where
+>   ε                   = Ord []
+>   (Ord x) • (Ord y)   = Ord (runs x y)
 
-% > foldm ∷ (a → a → a) → a → ([a] → a)
-% > foldm (•) (x:[]) = x
-% > foldm (•) (x:xs) = foldm (•) first • foldm (•) second
-% >   where first = fst halved
-% >         second = snd halved
-% >         halved = splitAt ((length (x:xs)) `div` 2) (x:xs)
+Top-down implementation of foldm
+
+> foldm ∷ (a → a → a) → a → ([a] → a)
+> foldm (•) ε []      = ε
+> foldm (•) ε [x]     = x
+> foldm (•) ε list    = (foldm (•) ε first) • (foldm (•) ε second)
+>   where first = fst halved
+>         second = snd halved
+>         halved = splitAt ((length list) `div` 2) list
+
+Bottom-up implementation of foldm(called foldmb since foldm is already defined above)
+
+> foldmb ∷ (a → a → a) → a → ([a] → a)
+> foldmb (•) ε [] = ε
+> foldmb (•) ε a = foldmb (•) ε (pairs a)
+
+> pairs :: [a] -> [a]
+> pairs [] = []
+> pairs (x:[]) = []
+> pairs (x:y:zs) = x : pairs (y : zs)
 
 > kpg ∷ (Bit, Bit) → (Carry → Carry)
 > kpg (O,  O  )  =  \ _c  → O  -- kill
@@ -31,12 +47,6 @@ instance (Ord elem) ⇒ Monoid (OrdList elem) where
 
 > data KPG  =  K | P | G
 
-> data Additive = Sum {fromSum :: Int}
->   deriving (Show)
-> instance Monoid Additive where
->   ε       = Sum 0
->   x • y   = Sum (fromSum x + fromSum y)
-
 Exercise 6.2.1:
 
 > data And = A Bool
@@ -45,17 +55,16 @@ Exercise 6.2.1:
 >   ε       = A True
 >   A x • A y   = A (x && y)
 
-> data Or = B Bool
->   deriving (Show)
-> instance Monoid Or where
->   ε       = B True
->   B x • B y   = B (x || y)
+> newtype OR = MakeOr {fromBool::Bool} deriving (Show)
+> newtype Unequal = MakeUnequal {fromBool2::Bool} deriving (Show)
 
-> data XOR = C Bool
->   deriving (Show)
-> instance Monoid XOR where
->   ε       = C True
->   C x • C y   = C (x /= y)
+> instance Monoid OR where
+>   ε       = MakeOr True
+>   x • y   = MakeOr (fromBool x || fromBool y)
+
+> instance Monoid Unequal where
+>   ε       = MakeUnequal True
+>   x • y   = MakeUnequal (fromBool2 x /= fromBool2 y)
 
 > data Equal = D Bool
 >   deriving (Show)
@@ -69,6 +78,12 @@ Exercise 6.2.1:
 >   ε       = E True
 >   E x • E y   = E (not x && not y)
 
+
+> runs :: (Ord a) => [a] -> [a] -> [a]
+> runs [][] = []
+> runs [x][] = [x]
+> runs [][y] = [y]
+> runs (x:xs) (y:ys) = if x < y then x:runs xs (y:ys) else y:runs (x:xs) ys
 
 •
 Monoid is associative and has an identity element
