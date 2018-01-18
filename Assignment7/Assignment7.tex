@@ -20,62 +20,112 @@
 \maketitle
 
 \section*{Exercise 1}
+The partial correctness of insert is as follows:
+\begin{align*}
+  \textbf{case []} &\enspace \\
+  insert \enspace a [] &= [a] \\
+  \textbf{case (b:xs) \& a $\leq$ b} &\enspace \\
+  insert \enspace a (b:xs) &= a:b:xs \\
+  \textbf{case (b:xs) \& a $>$ b} &\enspace \\
+  insert \enspace a (b:xs) &= b:insert \enspace a \enspace xs \\
+\end{align*}
+If a is smaller or eqaul to b, then a should be placed before b in the list. Otherwise we know that b is smaller so we should compare it with the tail of the list to find the spot where a should be.
+
+The correctness of insertionSort is as follows:
+
 
 \section*{Exercise 2}
-% data Tree elem = Empty $|$ Node (Tree elem) elem (Tree elem)
-% inner :: Tree elem -> Integer
-% inner Empty = 0
-% inner (Node l a r) = 1 + inner l + inner l
-%
-% outer Empty = 1
-% outer (Node l a r) = 0 + outer l + outer r
-%
-% inner t + 1 = outer t
-% case t = Empty : inner Empty + 1
-% = {definition of inner}
-% 0 + 1 = 1
-% = {definition of outer}
-% outer Empty
-%
-% case t = Node l a r
-% inner (Node l a r) + 1
-% = {definition of inner}
-% 1 + inner l + inner r + 1
-% = {induction assumption}
-% = outer l + inner r + 1
-% = {induction assumption}
-% = outer l + outer r
-%
-% outer l + outer r
-% = {definition of outer}
-% outer (Node l a r)
-%
-% 2^{minHeight t} − 1 <= size t <= 2^{maxHeight t} − 1
-%
-% minHeight :: Tree elem -> Int
-% minHeight Empty = 0
-% minHeight (Node l a r) = 1 + (minHeight l `min` minHeight r)
-%
-% case t = Empty:
-% 2^{minHeight Empty} − 1
-% = {definition of minHeight}
-% 2^0 - 1
-% = {arithmetic}
-% 0
-% = {definition of size}
-% size Empty
-%
-% case t = Node l a r:
-% 2^{minHeight (Node l a r)} − 1
-% = {definition of minHeight}
-% 2^{1 + (minHeight l `min` minHeight r)} - 1
-% 2 \cdot 2^{minHeight l `min` minHeight r}
-% 2^{minHeight l `min` minHeight r} + 2^{minHeight l `min` minHeight r}
-% 1 + 2^{minHeight l} - 1 + 2^{minHeight r} - 1
-% <= {induction assumption}
-% 1 + size l + size r
-% = {definition of size}
-% size(Node l a r)
+\begin{enumerate}
+  \item The datatype tree elem was defined as follows: \\
+  data Tree elem = Empty $|$ Node (Tree elem) elem (Tree elem) \\
+  \newline
+  The induction scheme for this datatype holds for the value of Empty which is the base case. The induction step covers the case that Tree elem = Node (Tree elem) elem (Tree elem)
+  \item
+  \begin{minipage}[t]{1\textwidth}
+  The functions inner and outer are defined as follows:
+  \newline
+  inner :: Tree elem $->$ Integer \\
+  inner Empty = 0 \\
+  inner (Node l a r) = 1 + inner l + inner r \\
+  \newline
+  outer Empty = 1 \\
+  outer (Node l a r) = 0 + outer l + outer r \\
+  \newline
+  \textbf{Induction hypothesis}: inner t + 1 = outer t \\
+  \textbf{case t = Empty : inner Empty + 1} \\
+  inner Empty + 1 = outer t \\
+  = $\{$definition of inner$\}$ \\
+  0 + 1 = 1 \\
+  = $\{$definition of outer$\}$ \\
+  outer Empty \\
+  \newline
+  \textbf{case t = Node l a r }\\
+  inner (Node l a r) + 1 \\
+  = $\{$definition of inner$\}$ \\
+  1 + inner l + inner r + 1 \\
+  = $\{$induction assumption$\}$ \\
+  = outer l + inner r + 1 \\
+  = $\{$induction assumption$\}$ \\
+  = outer l + outer r \\
+  \newline
+  outer l + outer r \\
+  = $\{$definition of outer$\}$ \\
+  outer (Node l a r)
+  \end{minipage}
+  \item
+  \textbf{Inductive hypothesis:} $2^{minHeight \enspace t} - 1 <= size \enspace t <= 2^{maxHeight \enspace t} - 1$ \\
+  First, we take a look at the definition of minHeight and we will show the left side of the hypothesis. \\
+  minHeight :: Tree elem $->$ Int \\
+  minHeight Empty = 0 \\
+  minHeight (Node l a r) = 1 + (minHeight l `min` minHeight r) \\
+  \newline
+  \textbf{case t = Empty:} \\
+  $2^{minHeight \enspace Empty} - 1$ \\
+  = $\{$definition of minHeight$\}$ \\
+  $2^0 - 1$ \\
+  = $\{$arithmetic$\}$ \\
+  0 \\
+  = $\{$definition of size$\}$ \\
+  size Empty \\
+  \newline
+  \textbf{case t = Node l a r:} \\
+  $2^{minHeight \enspace (Node \enspace l \enspace a \enspace r)} - 1$ \\
+  = $\{$definition of minHeight$\}$ \\
+  $2^{1 + (minHeight \enspace l \enspace `min` \enspace minHeight \enspace r)} - 1$ \\
+  $2 \cdot 2^{minHeight \enspace l \enspace `min` \enspace minHeight \enspace r}$ \\
+  $2^{minHeight \enspace l \enspace `min` \enspace minHeight \enspace r} + 2^{minHeight \enspace l \enspace `min` \enspace minHeight \enspace r}$ \\
+  $1 + 2^{minHeight \enspace l} - 1 + 2^{minHeight \enspace r} - 1$ \\
+  $<=$ $\{$induction assumption$\}$ \\
+  $1 + size \enspace l + size \enspace r$ \\
+  = $\{$definition of size$\}$ \\
+  size(Node l a r)
+
+  Now, we continue with the function maxHeight. This function is defined as follows:\\
+  maxHeight :: Tree elem $->$ Int \\
+  maxHeight Empty = 0 \\
+  maxHeight (Node l a r) = 1 + (maxHeight l `max` maxHeight r) \\
+  \newline
+  \textbf{case t = Empty:} \\
+  $2^{maxHeight \enspace Empty} - 1$ \\
+  = $\{$definition of maxHeight$\}$ \\
+  $2^0 - 1$ \\
+  = $\{$arithmetic$\}$ \\
+  0 \\
+  = $\{$definition of size$\}$ \\
+  size Empty \\
+  \newline
+  \textbf{case t = Node l a r:} \\
+  $2^{maxHeight \enspace (Node \enspace l \enspace a \enspace r)} - 1$ \\
+  = $\{$definition of minHeight$\}$ \\
+  $2^{1 + (maxHeight \enspace l \enspace `max` \enspace maxHeight \enspace r)} - 1$ \\
+  $2 \cdot 2^{maxHeight \enspace l \enspace `max` \enspace maxHeight \enspace r}$ \\
+  $2^{maxHeight \enspace l \enspace `max` \enspace maxHeight \enspace r} + 2^{maxHeight \enspace l \enspace `max` \enspace maxHeight \enspace r}$ \\
+  $1 + 2^{maxHeight \enspace l} - 1 + 2^{maxHeight \enspace r} - 1$ \\
+  $>=$ $\{$induction assumption$\}$ \\
+  $1 + size \enspace l + size \enspace r$ \\
+  = $\{$definition of size$\}$ \\
+  size(Node l a r)
+\end{enumerate}
 
 \section*{Exercise 3}
 \section*{Exercise 4}
