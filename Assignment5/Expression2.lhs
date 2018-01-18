@@ -35,8 +35,6 @@ Using do-notation.
 >          .|  do symbol '(' ; i <- expr' ; symbol ')' ; return i
 
 parse expr "4*71+1"
-parse expr "4 * 71 + 1"
-
 
 -- Exercise 5.3.1
 
@@ -45,7 +43,6 @@ parse expr "4 * 71 + 1"
 > 	.|	(exprs >>= \i -> symbol '+' >> exprs >>= \j -> return (i :+: j))
 > 	.|	(exprs >>= \i -> symbol '*' >> exprs >>= \j -> return (i :*: j))
 > 	.|	(symbol '(' >> exprs >>= \i -> symbol ')' >> return i)
-
 
 -- Exercise 5.3.2
 
