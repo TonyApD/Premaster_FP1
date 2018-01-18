@@ -20,19 +20,15 @@
 \maketitle
 
 \section*{Exercise 1}
-The partial correctness of insert is as follows:
-\begin{align*}
-  \textbf{case []} &\enspace \\
-  insert \enspace a [] &= [a] \\
-  \textbf{case (b:xs) \& a $\leq$ b} &\enspace \\
-  insert \enspace a (b:xs) &= a:b:xs \\
-  \textbf{case (b:xs) \& a $>$ b} &\enspace \\
-  insert \enspace a (b:xs) &= b:insert \enspace a \enspace xs \\
-\end{align*}
-If a is smaller or eqaul to b, then a should be placed before b in the list. Otherwise we know that b is smaller so we should compare it with the tail of the list to find the spot where a should be.
+If `a' is smaller or eqaul to `b', then `a' should be placed before `b' in the list. Otherwise we know that `b' is smaller, so we should compare it with the tail of the list to find the spot where `a' should be and keep `b` before it. \\
+\textbf{case []} \\
+  insert \enspace a [] = [a] \\
+\textbf{case (b:xs) \& a $\leq$ b} \\
+  insert \enspace a (b:xs) = a:b:xs \\
+\textbf{case (b:xs) \& a $>$ b} \\
+  insert \enspace a (b:xs) = b:insert \enspace a \enspace xs \\
 
-The correctness of insertionSort is as follows:
-
+The function insertionsort should try to place all the elements of the list in the right position.
 
 \section*{Exercise 2}
 \begin{enumerate}
