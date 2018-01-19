@@ -132,7 +132,41 @@ The function insertionsort returns an ordered list. The function has two cases.
   size(Node l a r)
 \end{enumerate}
 
+
 \section*{Exercise 3}
+The implementations can be found in Insort.lhs\\
+\begin{enumerate}
+    \item Code implementation.
+    \item The new implementation isn't more efficient in terms of running time, when functions are used to generate test trees. And run both the insort and insortCat with the same trees.
+    \item We want to prove that the inorderCat (defivation) equals the inorder of a tree. We define the inorder as [tl, a , tr], where tl is the inorder of the left subtree and tr is the inorder of the right subtree. We take a as the inorder value from the tree node.
+        \begin{verbatim}
+        BASE CASE:
+            => {inorderCat empty tree with empty list}
+        [] = inorderCat Empty []
+            => {definition: inorderCat Empty xs = xs}
+        []
+            => {gives back just the empty list}
+        
+        INDUCTIVE STAP:
+            => {inorder a tree with subtrees tl and tl }
+        [tl,a,tr] = inorderCat (Node tl a tr) []
+            => {definition inorderCat}
+        [tl,a,tr] = (inorderCat tl (a:inorderCat tr []))
+            => {write inorderCat tr as tr}
+        [tl,a,tr] = (inorderCat tl (a:tr))
+            => {prepend a to the inorderCat tr}
+        [tl,a,tr] = (inorderCat tl [a,tr])
+            => {write inorderCat tl as tl}
+        [tl,a,tr] = (tl [a,tr])
+            => {use definition of inorderCat}
+        [tl,a,tr] = [tl,a,tr]
+        \end{verbatim}
+    
+    \item Code implementation. 
+    \item I do not know that Huges list is. From the slides §6.1 and §6.2 it does not become clear ether. And Google does not know any Huges.
+\end{enumerate}
+
+
 \section*{Exercise 4}
 % not(a && b) = nod a || not b
 % not a . and = or map not
