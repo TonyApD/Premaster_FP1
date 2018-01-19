@@ -20,15 +20,24 @@
 \maketitle
 
 \section*{Exercise 1}
-If `a' is smaller or eqaul to `b', then `a' should be placed before `b' in the list. Otherwise we know that `b' is smaller, so we should compare it with the tail of the list to find the spot where `a' should be and keep `b` before it. \\
-\textbf{case []} \\
+If `a' is smaller or eqaul to `b', then `a' should be placed before `b' in the list. Otherwise we know that element `b' is smaller, so we should compare `a' with the tail of the list to find the spot where it should be and keep `b` before it. \\
+\textbf{case [] (base case)} \\
   insert \enspace a [] = [a] \\
-\textbf{case (b:xs) \& a $\leq$ b} \\
+  When the list is empty, then adding an element will result in a sorted list. \\
+\textbf{case (b:xs) \& a $\leq$ b (Inductive step scenario 1)} \\
   insert \enspace a (b:xs) = a:b:xs \\
-\textbf{case (b:xs) \& a $>$ b} \\
+  In this case the value of a should be put in front of the b in the list.\\
+\textbf{case (b:xs) \& a $>$ b (Inductive step scenario 2)} \\
   insert \enspace a (b:xs) = b:insert \enspace a \enspace xs \\
-
-The function insertionsort should try to place all the elements of the list in the right position.
+  In this case the b should be before the value of a and we need to find the position where to put the value of a in the tail of the list.\\
+  \newline
+The function insertionsort returns an ordered list. The function has two cases.
+\textbf{case [] (base case)} \\
+  insertionsort \enspace [] = [] \\
+  Since an empty list doesn't contain any element it's already sorted, so we should return the empty list.\\
+\textbf{case (b:xs) \& a $\leq$ b (Inductive step scenario 1)} \\
+  insertionSort \enspace (x : xs) = insert \enspace  x \enspace (insertionSort xs) \\
+  In this case we try to insert the first element of the list in the already sorted tail xs. The tail will recurse until it's the empty list and then insert all elements in this list. Since the function insert makes sure that the element is inserted in a position in which the list is sorted, the call to insert will preserve the property that the list is sorted after every insert.
 
 \section*{Exercise 2}
 \begin{enumerate}
