@@ -138,7 +138,7 @@ The implementations can be found in Insort.lhs\\
 \begin{enumerate}
     \item Code implementation.
     \item The new implementation isn't more efficient in terms of running time, when functions are used to generate test trees. And run both the insort and insortCat with the same trees.
-    \item We want to prove that the inorderCat (defivation) equals the inorder of a tree. We define the inorder as [tl, a , tr], where tl is the inorder of the left subtree and tr is the inorder of the right subtree. We take a as the inorder value from the tree node.
+    \item We want to prove that the inorderCat (derivation) equals the inorder of a tree. We define the inorder as [tl, a , tr], where tl is the inorder of the left subtree and tr is the inorder of the right subtree. We take a as the inorder value from the tree node.
         \begin{verbatim}
         BASE CASE:
             => {inorderCat empty tree with empty list}
@@ -146,7 +146,7 @@ The implementations can be found in Insort.lhs\\
             => {definition: inorderCat Empty xs = xs}
         []
             => {gives back just the empty list}
-        
+
         INDUCTIVE STAP:
             => {inorder a tree with subtrees tl and tl }
         [tl,a,tr] = inorderCat (Node tl a tr) []
@@ -161,8 +161,8 @@ The implementations can be found in Insort.lhs\\
             => {use definition of inorderCat}
         [tl,a,tr] = [tl,a,tr]
         \end{verbatim}
-    
-    \item Code implementation. 
+
+    \item Code implementation.
     \item I do not know that Huges list is. From the slides §6.1 and §6.2 it does not become clear ether. And Google does not know any Huges.
 \end{enumerate}
 
@@ -189,7 +189,8 @@ The implementations can be found in Insort.lhs\\
 \section*{Exercise 5}
 \begin{enumerate}
   \item The implementation is quite slow since it adds i-times an indent. In this indent there is also a recursion to tab.  After these indents x is concatinated to this.
-  \item
+  \item The implementation of renderWith can be found in Text.lhs. prettyTree(balanced[1..6]) now prints the expected output.
+  \item We did an attempt in changing the definitions in operations by actual functions but this only printed spaces and newlines. The implementation of the attempt can be found in Text.lhs in the function render2. 
 \end{enumerate}
 
 \section*{Exercise 6}
