@@ -22,13 +22,26 @@ Reference implementation.
 >            |  Text :<> Text
 >            deriving (Show)
 >
-> text s = render2 (Text s)
-> nl = render2 (Nl)
-> indent i d = render2 (Indent i d)
-> d1 <> d2 = render2 (d1 :<> d2)
+
+Definitions for 7.5.3, but only print spaces and new lines
+
+< text s = Text (render2 (Text s))
+< nl = Text (render2 (Nl))
+< indent i d = Text (render2 (Indent i d))
+< d1 <> d2 = Text (render2 (d1 :<> d2))
+
+> text    =  Text
+> nl      =  Nl
+> indent  =  Indent
+> (<>)    =  (:<>)
 >
-> render2 (Text s)      =  s
-> render2 (Nl)          =  "\n"
+> render (Text s)      =  s
+> render (Nl)          =  "\n"
+> render (Indent i d)  =  tab i (render d)
+> render (d1 :<> d2)   =  render d1 ++ render d2
+>
+> render2 (Text s)      =  renderWith (Text s) 0 ""
+> render2 (Nl)          =  renderWith (Nl) 0 ""
 > render2 (Indent i d)  =  renderWith (Indent i d) i ""
 > render2 (d1 :<> d2)   =  renderWith (d1 :<> d2) 0 ""
 
