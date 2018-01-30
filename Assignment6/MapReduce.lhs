@@ -56,7 +56,7 @@ Top-down implementation of foldm
 
 > foldm ∷ (a → a → a) → a → ([a] → a)
 > foldm (•) ε []      = ε
-> foldm (•) ε [x]     = x
+> foldm (•) ε [x]     = (•) ε x
 > foldm (•) ε list    = (foldm (•) ε first) • (foldm (•) ε second)
 >   where first = fst halved
 >         second = snd halved
