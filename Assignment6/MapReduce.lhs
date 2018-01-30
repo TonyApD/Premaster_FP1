@@ -14,14 +14,6 @@
 
 > newtype OrdList elem = Ord [elem]
 
-> kpg ∷ (Bit, Bit) → (Carry → Carry)
-> kpg (O,  O  )  =  \ _c  → O  -- kill
-> kpg (O,  I  )  =  \ c   → c  -- propagate
-> kpg (I,  O  )  =  \ c   → c  -- propagate
-> kpg (I,  I  )  =  \ _c  → I  -- generate
-
-> data KPG  =  K | P | G
-
 Exercise 6.2.1:
 
 > newtype OR      = MakeOr      {fromBool::Bool} deriving (Show)
@@ -76,5 +68,33 @@ Bottom-up implementation of foldm(called foldmb since foldm is already defined a
 > runs [][y] = [y]
 > runs (x:xs) (y:ys) = if x < y then x:runs xs (y:ys) else y:runs (x:xs) ys
 
-•
-Monoid is associative and has an identity element
+Exercise 6.5
+
+> kpg ∷ (Bit, Bit) → (Carry → Carry)
+> kpg (O,  O  )  =  \c  → O  -- kill
+> kpg (O,  I  )  =  \c   → c  -- propagate
+> kpg (I,  O  )  =  \c   → c  -- propagate
+> kpg (I,  I  )  =  \c  → I  -- generate
+
+> data KPG  =  K | P | G
+>     deriving(Show, Eq)
+
+% > newtype KPG = KPG (Bit, Bit)
+
+> instance Monoid KPG where
+>   ε           = P   -- Since P is the representation for the function id
+>   x • y
+>     | x == K  = K
+>     | x == P  = y
+>     | x == G  = G
+
+> apply :: KPG -> (Carry -> Carry)
+> apply P = id
+> apply K = (\c ->  O)
+> apply G = (\c ->  I)
+
+> toKpg :: (Bit, Bit) → KPG
+> toKpg (O,O) = K
+> toKpg (O,I) = P
+> toKpg (I,O) = P
+> toKpg (I,I) = G
