@@ -65,8 +65,8 @@ Top-down implementation of foldm
 Bottom-up implementation of foldm(called foldmb since foldm is already defined above)
 
 > foldmb ∷ (a → a → a) → a → ([a] → a)
-> foldmb (•) ε [] = ε
-> foldmb (•) ε (x:[]) = (•) ε x
+> foldmb (•) ε []       = ε
+> foldmb (•) ε (x:[])   = (•) ε x
 > foldmb (•) ε (x:y:[]) = (•) ε ((•) x y)
 > foldmb (•) ε (x:y:xs) = foldmb (•) ε (xs ++ [((•) x y)])
 
