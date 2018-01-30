@@ -79,7 +79,7 @@ Exercise 6.5
 > data KPG  =  K | P | G
 >     deriving(Show, Eq)
 
-% > newtype KPG = KPG (Bit, Bit)
+% > newtype KPG = KPG (Bit, Bit) deriving Show
 
 > instance Monoid KPG where
 >   ε           = P   -- Since P is the representation for the function id
