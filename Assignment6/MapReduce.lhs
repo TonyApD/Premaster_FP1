@@ -66,12 +66,9 @@ Bottom-up implementation of foldm(called foldmb since foldm is already defined a
 
 > foldmb ∷ (a → a → a) → a → ([a] → a)
 > foldmb (•) ε [] = ε
-> foldmb (•) ε a = foldmb (•) ε (pairs a)
-
-> pairs :: [a] -> [a]
-> pairs [] = []
-> pairs (x:[]) = []
-> pairs (x:y:zs) = x : pairs (y : zs)
+> foldmb (•) ε (x:[]) = (•) ε x
+> foldmb (•) ε (x:y:[]) = (•) ε ((•) x y)
+> foldmb (•) ε (x:y:xs) = foldmb (•) ε (xs ++ [((•) x y)])
 
 > runs :: (Ord a) => [a] -> [a] -> [a]
 > runs [][] = []
